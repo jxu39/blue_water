@@ -1,0 +1,13 @@
+#!/bin/bash
+#PBS -l nodes=2:ppn=4
+#PBS -e my_job.err
+#PBS -o my_job.out
+#PBS -l walltime=00:03:00
+. /opt/modules/3.2.10.1/init/bash
+module swap PrgEnv-cray PrgEnv-gnu
+module load bw-python
+
+# this path would change depend on the location of main_program.py and isabelPressureWithHeader.raw
+cd scratch/task2
+
+aprun -n 6 python main_program.py isabelPressureWithHeader.raw 1 1 5 > out_put
